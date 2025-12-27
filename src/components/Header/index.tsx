@@ -2,7 +2,7 @@ import { Header as AntdHeader } from "antd/es/layout/layout";
 import LanguageSwitcher from "../LanguageSwitcher";
 import ThemeSwitcher from "../ThemeSwitcher";
 
-const Header = () => {
+export default function Header() {
   return (
     <AntdHeader className="!bg-white dark:!bg-xcolor1 border-b border-gray-200 dark:border-gray-700 !px-6 h-16">
       <div className="flex items-center justify-between align-middle h-full">
@@ -20,6 +20,4 @@ const Header = () => {
       </div>
     </AntdHeader>
   );
-};
-
-export default Header;
+}
