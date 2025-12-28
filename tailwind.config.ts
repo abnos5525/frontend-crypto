@@ -35,6 +35,7 @@ const config: Config = {
         xcolor20: "#E8F2FF",
         xcolor21: "#FFFFFF",
         xcolor22: "#10B981",
+        xcolor23: "#000000",
       },
       spacing: {
         layoutHeader: "68px",
@@ -43,6 +44,9 @@ const config: Config = {
       },
       borderRadius: {
         10: "10px",
+      },
+      boxShadow: {
+        'header': '0 2px 20px -5px rgba(102, 102, 102, 0.3)',
       },
     },
     fontFamily: {

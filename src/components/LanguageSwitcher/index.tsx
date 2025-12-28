@@ -17,7 +17,7 @@ export default function LanguageSwitcher() {
       onClick={toggleLanguage}
       type="text"
       size="large"
-      className="flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 !h-10 !px-4"
+      className="flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 !h-10 !px-1"
     >
       <span className="text-gray-700 dark:text-gray-300 font-medium text-base">
         {language === "fa" ? "EN" : "FA"}

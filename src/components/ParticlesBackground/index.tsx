@@ -5,6 +5,7 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import type { Engine } from "@tsparticles/engine";
 import { useTheme } from "@/src/contexts/ThemeContext";
+import tailwindConfig from "@/tailwind.config";
 
 export default function ParticlesBackground() {
   const [init, setInit] = useState(false);
@@ -22,7 +23,9 @@ export default function ParticlesBackground() {
     return null;
   }
 
-  const particleColor = theme === "dark" ? "#ffffff" : "#666666";
+  const colors = tailwindConfig.theme?.extend?.colors as Record<string, string>;
+  const particleColor = theme === "dark" ? colors.xcolor21 : colors.xcolor6;
+  const backgroundColor = theme === "dark" ? colors.xcolor23 : colors.xcolor3;
 
   return (
     <Particles
@@ -32,7 +35,7 @@ export default function ParticlesBackground() {
       options={{
         background: {
           color: {
-            value: "transparent",
+            value: backgroundColor,
           },
         },
         fpsLimit: 60,
