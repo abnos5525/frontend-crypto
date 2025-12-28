@@ -19,6 +19,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     const savedLang = localStorage.getItem("language") as Language;
     if (savedLang && (savedLang === "fa" || savedLang === "en")) {
       setLanguageState(savedLang);
+      document.documentElement.dir = savedLang === "fa" ? "rtl" : "ltr";
+      document.documentElement.lang = savedLang;
+    } else {
+      document.documentElement.dir = defaultLanguage === "fa" ? "rtl" : "ltr";
+      document.documentElement.lang = defaultLanguage;
     }
   }, []);
 

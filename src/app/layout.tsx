@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className="m-0 p-0">
+    <html className="m-0 p-0" lang="fa" dir="rtl">
       <body className="m-0 p-0">
         <AntdRegistry>
           <MainTemplate>{children}</MainTemplate>

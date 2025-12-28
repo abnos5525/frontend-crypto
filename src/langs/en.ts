@@ -36,6 +36,11 @@ export const en: TranslationKeys = {
       title: "Home",
       welcome: "Welcome to Arnitex",
       description: "Professional Cryptocurrency Trading Platform",
+      heroTitle: "Arnitex Digital Currency Exchange",
+      heroSubtitle: "A New Experience in Cryptocurrency",
+      startButton: "Start",
+      feature1: "Enter your mobile number or email.",
+      feature2: "Start investing in cryptocurrency markets now.",
     },
     about: {
       title: "About Us",

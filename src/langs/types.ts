@@ -34,6 +34,11 @@ export interface TranslationKeys {
       title: string;
       welcome: string;
       description: string;
+      heroTitle: string;
+      heroSubtitle: string;
+      startButton: string;
+      feature1: string;
+      feature2: string;
     };
     about: {
       title: string;

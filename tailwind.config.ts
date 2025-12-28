@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primaryColor: "#FF6B35",
+        primaryColor: "#FF6B10",
         xerror1: "#FF8D69",
         xerror2: "#EF4444",
         xcolor1: "#1A1A1A",
@@ -36,6 +36,8 @@ const config: Config = {
         xcolor21: "#FFFFFF",
         xcolor22: "#10B981",
         xcolor23: "#000000",
+        xcolor24: "#1C1C1C",
+
       },
       spacing: {
         layoutHeader: "68px",
@@ -51,6 +53,9 @@ const config: Config = {
     },
     fontFamily: {
       YBAKH: ["YBAKH"],
+      vazir: ["Vazirmatn", "sans-serif"],
+      iransans: ["IRANSans", "sans-serif"],
+      farsi: ["Vazirmatn", "IRANSans", "sans-serif"],
     },
   },
   plugins: [tailwindChildren],
