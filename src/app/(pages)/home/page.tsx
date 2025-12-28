@@ -4,6 +4,7 @@ import { Button, Input } from "antd";
 import Image from "next/image";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import { useTheme } from "@/src/contexts/ThemeContext";
+import CryptoTicker from "@/src/components/CryptoTicker";
 import heroDarkImage from "@/src/assets/images/hero-dark.png";
 import heroLightImage from "@/src/assets/images/hero.png";
 
@@ -12,7 +13,7 @@ export default function HomePage() {
   const { theme } = useTheme();
 
   return (
-    <section className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 sm:px-6 lg:px-8 pb-12">
       <div className="max-w-7xl w-full mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
           <div className="order-1 lg:order-1 flex flex-col items-center lg:ltr:items-start lg:rtl:items-end mb-10 lg:mb-0">
@@ -63,6 +64,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+      <CryptoTicker />
     </section>
   );
 }
