@@ -7,6 +7,15 @@ const nextConfig: NextConfig = {
       allowedOrigins: ["*"],
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "coin-images.coingecko.com",
+        pathname: "/**",
+      },
+    ],
+  },
   async headers() {
     return [
       {

@@ -41,6 +41,20 @@ export const en: TranslationKeys = {
       startButton: "Start",
       feature1: "Enter your mobile number or email.",
       feature2: "Start investing in cryptocurrency markets now.",
+      priceChart: {
+        title: "Real-Time Price Chart",
+        viewAll: "View All Cryptocurrencies",
+        currencyTether: "Tether",
+        currencyToman: "Toman",
+        columns: {
+          name: "Digital Currency Name",
+          lastPrice: "Last Price (Tether)",
+          change24h: "24h Change",
+          volume24h: "24h Volume",
+          weeklyChart: "Weekly Chart",
+        },
+        buySell: "Buy and Sell",
+      },
     },
     about: {
       title: "About Us",

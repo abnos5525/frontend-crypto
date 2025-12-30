@@ -16,40 +16,40 @@ function TemplateContent({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  useEffect(() => {
-    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
-      navigator.serviceWorker
-        .register("/sw.js")
-        .then((registration) => {
-          console.log(
-            "Service Worker registered with scope:",
-            registration.scope
-          );
-        })
-        .catch((error) => {
-          console.error("Service Worker registration failed:", error);
-        });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+  //     navigator.serviceWorker
+  //       .register("/sw.js")
+  //       .then((registration) => {
+  //         console.log(
+  //           "Service Worker registered with scope:",
+  //           registration.scope
+  //         );
+  //       })
+  //       .catch((error) => {
+  //         console.error("Service Worker registration failed:", error);
+  //       });
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    const checkOnlineStatus = () => {
-      if (!navigator.onLine && pathname !== "/offline") {
-        router.push("/offline");
-      } else if (navigator.onLine && pathname === "/offline") {
-        router.push("/");
-      }
-    };
+  // useEffect(() => {
+  //   const checkOnlineStatus = () => {
+  //     if (!navigator.onLine && pathname !== "/offline") {
+  //       router.push("/offline");
+  //     } else if (navigator.onLine && pathname === "/offline") {
+  //       router.push("/");
+  //     }
+  //   };
 
-    checkOnlineStatus();
-    window.addEventListener("online", checkOnlineStatus);
-    window.addEventListener("offline", checkOnlineStatus);
+  //   checkOnlineStatus();
+  //   window.addEventListener("online", checkOnlineStatus);
+  //   window.addEventListener("offline", checkOnlineStatus);
 
-    return () => {
-      window.removeEventListener("online", checkOnlineStatus);
-      window.removeEventListener("offline", checkOnlineStatus);
-    };
-  }, [router, pathname]);
+  //   return () => {
+  //     window.removeEventListener("online", checkOnlineStatus);
+  //     window.removeEventListener("offline", checkOnlineStatus);
+  //   };
+  // }, [router, pathname]);
 
   useEffect(() => {
     notification.config({

@@ -1,17 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
-import axios from "axios";
-
-interface CryptoData {
-  id: string;
-  symbol: string;
-  name: string;
-  current_price: number;
-  price_change_percentage_24h: number;
-  image: string;
-}
+import { useCryptoData } from "@/src/hooks/useCryptoData";
 
 const TICKER_CONFIG = {
   REFRESH_INTERVAL: 30000,
@@ -19,25 +9,10 @@ const TICKER_CONFIG = {
 };
 
 const CryptoTicker = () => {
-  const [cryptoData, setCryptoData] = useState<CryptoData[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  const fetchCryptoData = async () => {
-    try {
-      const response = await axios.get('/api/crypto');
-      setCryptoData(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching crypto data:", error);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchCryptoData();
-    const interval = setInterval(fetchCryptoData, TICKER_CONFIG.REFRESH_INTERVAL);
-    return () => clearInterval(interval);
-  }, []);
+  const { data: cryptoData, loading } = useCryptoData({
+    sparkline: false,
+    refreshInterval: TICKER_CONFIG.REFRESH_INTERVAL,
+  });
 
   const formatPrice = (price: number) => {
     if (price >= 1000) {
@@ -54,7 +29,7 @@ const CryptoTicker = () => {
     return percentage >= 0 ? `+${formatted}%` : `${formatted}%`;
   };
 
-  if (loading || cryptoData.length === 0) {
+  if (loading && cryptoData.length === 0) {
     return (
       <div className="fixed bottom-0 left-0 right-0 z-[100] bg-black/90 backdrop-blur-md border-t border-gray-700/50 h-12 flex items-center justify-center">
         <div className="flex items-center gap-2">
@@ -64,6 +39,10 @@ const CryptoTicker = () => {
         </div>
       </div>
     );
+  }
+
+  if (cryptoData.length === 0) {
+    return null;
   }
 
   return (

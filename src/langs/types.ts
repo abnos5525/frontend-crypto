@@ -39,6 +39,20 @@ export interface TranslationKeys {
       startButton: string;
       feature1: string;
       feature2: string;
+      priceChart: {
+        title: string;
+        viewAll: string;
+        currencyTether: string;
+        currencyToman: string;
+        columns: {
+          name: string;
+          lastPrice: string;
+          change24h: string;
+          volume24h: string;
+          weeklyChart: string;
+        };
+        buySell: string;
+      };
     };
     about: {
       title: string;

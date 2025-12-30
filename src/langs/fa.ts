@@ -41,6 +41,20 @@ export const fa: TranslationKeys = {
       startButton: "شروع",
       feature1: "شماره‌ی همراه یا ایمیل خود را وارد کنید.",
       feature2: "هم‌اکنون در بازار ارزهای دیجیتال سرمایه‌گذاری کنید.",
+      priceChart: {
+        title: "نمودار قیمت لحظه ای",
+        viewAll: "مشاهده همه ی رمز ارزها",
+        currencyTether: "تتر",
+        currencyToman: "تومان",
+        columns: {
+          name: "نام ارز دیجیتال",
+          lastPrice: "آخرین قیمت (تتر)",
+          change24h: "تغییر ۲۴h",
+          volume24h: "حجم معاملات ۲۴h",
+          weeklyChart: "نمودار هفتگی",
+        },
+        buySell: "خرید و فروش",
+      },
     },
     about: {
       title: "درباره ما",

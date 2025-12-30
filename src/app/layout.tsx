@@ -5,7 +5,7 @@ import { fa } from "@/src/langs/fa";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 
 export const metadata: Metadata = {
-  title: fa.metadata.title,
+  title: `${fa.metadata.title} - ${fa.pages.home.title}`,
   description: fa.metadata.description,
 };
 
