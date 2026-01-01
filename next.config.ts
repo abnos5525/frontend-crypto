@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 // Check if we're building for GitHub Pages
 const isGithubPages = process.env.GITHUB_PAGES === "true";
-const repositoryName = process.env.GITHUB_REPOSITORY_NAME || "front-crypto";
+const repositoryName = process.env.GITHUB_REPOSITORY_NAME || "frontend-crypto";
 // If repository name ends with .github.io, it's a root repository (no basePath needed)
 const isRootRepo = repositoryName.endsWith(".github.io");
 
