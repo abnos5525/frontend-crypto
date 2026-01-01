@@ -31,11 +31,24 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
+      - name: Remove API routes for static export
+        run: |
+          if [ -d "src/app/api" ]; then
+            mv src/app/api src/app/api.backup
+          fi
+
       - name: Build for GitHub Pages
         run: npm run build:gh-pages
         env:
           GITHUB_PAGES: "true"
           GITHUB_REPOSITORY_NAME: ${{ github.event.repository.name }}
+
+      - name: Restore API routes
+        if: always()
+        run: |
+          if [ -d "src/app/api.backup" ]; then
+            mv src/app/api.backup src/app/api
+          fi
 
       - name: Create .nojekyll file
         run: touch out/.nojekyll

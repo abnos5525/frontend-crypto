@@ -8,13 +8,11 @@ const isRootRepo = repositoryName.endsWith(".github.io");
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  // Enable static export for GitHub Pages
   output: isGithubPages ? "export" : undefined,
-  // Set base path for GitHub Pages (only if not root repository)
   basePath: isGithubPages && !isRootRepo ? `/${repositoryName}` : "",
   assetPrefix: isGithubPages && !isRootRepo ? `/${repositoryName}` : "",
   images: {
-    unoptimized: isGithubPages, // Required for static export
+    unoptimized: isGithubPages,
     remotePatterns: [
       {
         protocol: "https",
