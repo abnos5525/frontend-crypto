@@ -1,13 +1,20 @@
 import type { NextConfig } from "next";
 
+// Check if we're building for GitHub Pages
+const isGithubPages = process.env.GITHUB_PAGES === "true";
+const repositoryName = process.env.GITHUB_REPOSITORY_NAME || "front-crypto";
+// If repository name ends with .github.io, it's a root repository (no basePath needed)
+const isRootRepo = repositoryName.endsWith(".github.io");
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  experimental: {
-    serverActions: {
-      allowedOrigins: ["*"],
-    },
-  },
+  // Enable static export for GitHub Pages
+  output: isGithubPages ? "export" : undefined,
+  // Set base path for GitHub Pages (only if not root repository)
+  basePath: isGithubPages && !isRootRepo ? `/${repositoryName}` : "",
+  assetPrefix: isGithubPages && !isRootRepo ? `/${repositoryName}` : "",
   images: {
+    unoptimized: isGithubPages, // Required for static export
     remotePatterns: [
       {
         protocol: "https",
@@ -16,7 +23,16 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  experimental: {
+    serverActions: {
+      allowedOrigins: ["*"],
+    },
+  },
   async headers() {
+    // Headers don't work with static export
+    if (isGithubPages) {
+      return [];
+    }
     return [
       {
         source: "/:path*",

@@ -135,16 +135,47 @@ class CryptoCache {
 
   private async fetchFromAPI(sparkline: boolean): Promise<CryptoData[]> {
     try {
-      const response = await axios.get("/api/crypto", {
-        params: sparkline ? { sparkline: "true" } : {},
-        timeout: 8000,
-      });
+      // Check if we're in static export mode (GitHub Pages) - API routes won't work
+      const isStaticExport = typeof window !== "undefined" && !window.location.hostname.includes("localhost");
+      
+      if (isStaticExport) {
+        // Call CoinGecko API directly for static export
+        const response = await axios.get(
+          "https://api.coingecko.com/api/v3/coins/markets",
+          {
+            params: {
+              vs_currency: "usd",
+              order: "market_cap_desc",
+              per_page: 20,
+              page: 1,
+              sparkline: sparkline,
+              price_change_percentage: "24h",
+            },
+            headers: {
+              Accept: "application/json",
+            },
+            timeout: 8000,
+          }
+        );
 
-      if (!response.data || !Array.isArray(response.data)) {
-        throw new Error("Invalid response format");
+        if (!response.data || !Array.isArray(response.data)) {
+          throw new Error("Invalid response format");
+        }
+
+        return response.data;
+      } else {
+        // Use Next.js API route in development/production with server
+        const response = await axios.get("/api/crypto", {
+          params: sparkline ? { sparkline: "true" } : {},
+          timeout: 8000,
+        });
+
+        if (!response.data || !Array.isArray(response.data)) {
+          throw new Error("Invalid response format");
+        }
+
+        return response.data;
       }
-
-      return response.data;
     } catch (error) {
       console.error("Error fetching crypto data:", error);
       throw error;
