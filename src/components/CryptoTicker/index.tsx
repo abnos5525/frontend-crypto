@@ -61,6 +61,7 @@ const CryptoTicker = () => {
             className="inline-flex items-center mx-6 text-xs whitespace-nowrap"
             dir="ltr"
           >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={crypto.image}
               alt={crypto.name}

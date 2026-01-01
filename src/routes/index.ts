@@ -17,7 +17,6 @@ const routePath = {
     return res;
   };
   
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const keys = extractKeys(routePath);
   type Tkeys = (typeof keys)[number];
   
