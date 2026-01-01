@@ -6,50 +6,12 @@ import fa_IR from "antd/locale/fa_IR";
 import en_US from "antd/locale/en_US";
 import { getLightTheme, getDarkTheme } from "@/antd.theme";
 import { useState, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
 import { LanguageProvider, useLanguage } from "@/src/contexts/LanguageContext";
 import { ThemeProvider, useTheme } from "@/src/contexts/ThemeContext";
 
 function TemplateContent({ children }: { children: React.ReactNode }) {
   const { language } = useLanguage();
   const { theme: currentTheme } = useTheme();
-  const router = useRouter();
-  const pathname = usePathname();
-
-  // useEffect(() => {
-  //   if (typeof window !== "undefined" && "serviceWorker" in navigator) {
-  //     navigator.serviceWorker
-  //       .register("/sw.js")
-  //       .then((registration) => {
-  //         console.log(
-  //           "Service Worker registered with scope:",
-  //           registration.scope
-  //         );
-  //       })
-  //       .catch((error) => {
-  //         console.error("Service Worker registration failed:", error);
-  //       });
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   const checkOnlineStatus = () => {
-  //     if (!navigator.onLine && pathname !== "/offline") {
-  //       router.push("/offline");
-  //     } else if (navigator.onLine && pathname === "/offline") {
-  //       router.push("/");
-  //     }
-  //   };
-
-  //   checkOnlineStatus();
-  //   window.addEventListener("online", checkOnlineStatus);
-  //   window.addEventListener("offline", checkOnlineStatus);
-
-  //   return () => {
-  //     window.removeEventListener("online", checkOnlineStatus);
-  //     window.removeEventListener("offline", checkOnlineStatus);
-  //   };
-  // }, [router, pathname]);
 
   useEffect(() => {
     notification.config({
