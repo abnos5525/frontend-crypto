@@ -34,7 +34,8 @@ jobs:
       - name: Remove API routes for static export
         run: |
           if [ -d "src/app/api" ]; then
-            mv src/app/api src/app/api.backup
+            mkdir -p .github/api-backup
+            mv src/app/api .github/api-backup/
           fi
 
       - name: Build for GitHub Pages
@@ -46,8 +47,9 @@ jobs:
       - name: Restore API routes
         if: always()
         run: |
-          if [ -d "src/app/api.backup" ]; then
-            mv src/app/api.backup src/app/api
+          if [ -d ".github/api-backup/api" ]; then
+            mv .github/api-backup/api src/app/api
+            rm -rf .github/api-backup
           fi
 
       - name: Create .nojekyll file

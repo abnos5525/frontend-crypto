@@ -42,3 +42,6 @@ yarn.lock
 package-lock.json
 
 .cursor/
+
+# GitHub Pages build backup
+.github/api-backup/
