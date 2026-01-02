@@ -47,13 +47,31 @@ export const fa: TranslationKeys = {
         currencyTether: "تتر",
         currencyToman: "تومان",
         columns: {
-          name: "نام ارز دیجیتال",
-          lastPrice: "آخرین قیمت (تتر)",
-          change24h: "تغییر ۲۴h",
-          volume24h: "حجم معاملات ۲۴h",
+          name: "نام ارز",
+          lastPrice: "آخرین قیمت",
+          change24h: "تغییر",
+          volume24h: "حجم معاملات",
           weeklyChart: "نمودار هفتگی",
         },
         buySell: "خرید و فروش",
+      },
+      features: {
+        spotTrading: {
+          title: "معامله اسپات",
+          description: "سفارش گذاری با قیمت ثابت، حد ضرر و....",
+        },
+        marginTrading: {
+          title: "معامله تعهدی",
+          description: "باز کردن موقعیت لانگ و شورت",
+        },
+        calculator: {
+          title: "ماشین حساب ارز دیجیتال",
+          description: "تبدیل لحظه ای قیمت ارزهای دیجیتال",
+        },
+        instantTrade: {
+          title: "خرید و فروش آنی",
+          description: "خرید و فروش با بهترین قیمت بازار در لحظه",
+        },
       },
     },
     about: {

@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import { useTheme } from "@/src/contexts/ThemeContext";
-import heroDarkImage from "@/src/assets/images/hero-dark.png";
-import heroLightImage from "@/src/assets/images/hero.png";
+import heroDarkImage from "@/src/assets/images/home/hero-dark.png";
+import heroLightImage from "@/src/assets/images/home/hero.png";
 
 export default function HomeImage() {
   const { t } = useLanguage();

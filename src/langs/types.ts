@@ -53,6 +53,24 @@ export interface TranslationKeys {
         };
         buySell: string;
       };
+      features: {
+        spotTrading: {
+          title: string;
+          description: string;
+        };
+        marginTrading: {
+          title: string;
+          description: string;
+        };
+        calculator: {
+          title: string;
+          description: string;
+        };
+        instantTrade: {
+          title: string;
+          description: string;
+        };
+      };
     };
     about: {
       title: string;

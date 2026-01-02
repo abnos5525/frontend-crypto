@@ -49,11 +49,29 @@ export const en: TranslationKeys = {
         columns: {
           name: "Digital Currency Name",
           lastPrice: "Last Price (Tether)",
-          change24h: "24h Change",
-          volume24h: "24h Volume",
+          change24h: "Change",
+          volume24h: "Volume",
           weeklyChart: "Weekly Chart",
         },
         buySell: "Buy and Sell",
+      },
+      features: {
+        spotTrading: {
+          title: "Spot Trading",
+          description: "Placing orders with fixed price, stop loss, and....",
+        },
+        marginTrading: {
+          title: "Margin Trading",
+          description: "Opening long and short positions",
+        },
+        calculator: {
+          title: "Digital Currency Calculator",
+          description: "Instant conversion of digital currency prices",
+        },
+        instantTrade: {
+          title: "Instant Buy and Sell",
+          description: "Buying and selling at the best market price instantly",
+        },
       },
     },
     about: {
