@@ -1,14 +1,17 @@
 import type { NextConfig } from "next";
 
 const isGithubPages = process.env.GITHUB_PAGES === "true";
+const isDevelopment = process.env.NODE_ENV === "development";
 const repositoryName = process.env.GITHUB_PROJECT_NAME || "frontend-crypto";
 const isRootRepo = repositoryName.endsWith(".github.io");
 
+const shouldUseBasePath = isGithubPages && !isRootRepo && !isDevelopment;
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  output: isGithubPages ? "export" : undefined,
-  basePath: isGithubPages && !isRootRepo ? `/${repositoryName}` : "",
-  assetPrefix: isGithubPages && !isRootRepo ? `/${repositoryName}` : "",
+  output: isGithubPages && !isDevelopment ? "export" : undefined,
+  basePath: shouldUseBasePath ? `/${repositoryName}` : "",
+  assetPrefix: shouldUseBasePath ? `/${repositoryName}` : "",
   images: {
     unoptimized: isGithubPages,
     remotePatterns: [
@@ -24,8 +27,19 @@ const nextConfig: NextConfig = {
       allowedOrigins: ["*"],
     },
   },
+  async redirects() {
+    if (!isGithubPages) {
+      return [
+        {
+          source: "/",
+          destination: "/home",
+          permanent: false,
+        },
+      ];
+    }
+    return [];
+  },
   async headers() {
-    // Headers don't work with static export
     if (isGithubPages) {
       return [];
     }

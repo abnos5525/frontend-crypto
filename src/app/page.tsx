@@ -1,19 +1,32 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import { Spin } from "antd";
 
 export default function RootPage() {
   const router = useRouter();
-  
+  const pathname = usePathname();
+
   useEffect(() => {
-    router.replace("/frontend-crypto/home");
-  }, [router]);
+    if (pathname === "/" || pathname === "") {
+      router.replace("/home");
+    }
+  }, [pathname, router]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const currentPath = window.location.pathname;
+      if (currentPath === "/" || currentPath === "/frontend-crypto" || currentPath === "/frontend-crypto/") {
+        window.location.href = "/home";
+      }
+    }
+  }, []);
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center min-h-screen bg-primary">
       <div className="text-center">
-        <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 dark:border-white"></div>
+        <Spin size="large" className="text-primaryColor" />
       </div>
     </div>
   );
