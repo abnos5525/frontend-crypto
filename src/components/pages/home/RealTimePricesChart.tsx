@@ -100,16 +100,77 @@ export default function RealTimePricesChart() {
     return `${percentage >= 0 ? "+" : "-"}${formatted} %`;
   };
 
-  if (loading) {
-    return (
-      <div className="w-full mt-16 flex items-center justify-center">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 bg-xcolor7 dark:bg-xcolor6 rounded-full animate-pulse"></div>
-          <div className="w-2 h-2 bg-xcolor7 dark:bg-xcolor6 rounded-full animate-pulse delay-75"></div>
-          <div className="w-2 h-2 bg-xcolor7 dark:bg-xcolor6 rounded-full animate-pulse delay-150"></div>
+  // Skeleton loader for price chart
+  const PriceChartSkeleton = () => (
+    <div className="w-[95%] mx-auto my-16">
+      <div className="relative flex flex-col sm:flex-col md:flex-row items-center justify-center mb-2 min-h-[auto] sm:min-h-[auto] md:min-h-[60px] gap-3 sm:gap-3 md:gap-0">
+        <div className="h-8 w-48 bg-xcolor5/50 dark:bg-xcolor24/50 rounded-lg animate-pulse"></div>
+        
+        <div className={`flex items-center justify-between w-full sm:w-full md:w-full gap-3 sm:gap-3 md:gap-0 order-2 sm:order-2 md:order-2 md:absolute md:left-0 md:right-0 ${
+          language === "fa" ? "flex-row-reverse sm:flex-row-reverse" : ""
+        }`}>
+          <div className={`h-6 w-24 bg-xcolor5/50 dark:bg-xcolor24/50 rounded animate-pulse md:absolute ${
+            language === "fa" ? "md:left-0" : "md:right-0"
+          }`}></div>
+
+          <div className={`bg-xcolor5/90 dark:bg-xcolor24/95 rounded-full py-1.5 sm:py-1.5 md:py-2 px-2 sm:px-2.5 md:px-3 flex items-center gap-0.5 sm:gap-0.5 md:gap-1 md:absolute ${
+            language === "fa" ? "md:right-0" : "md:left-0"
+          }`}>
+            <div className="h-6 w-16 bg-xcolor5/50 dark:bg-xcolor24/50 rounded-full animate-pulse"></div>
+            <div className="h-6 w-16 bg-xcolor5/50 dark:bg-xcolor24/50 rounded-full animate-pulse"></div>
+          </div>
         </div>
       </div>
-    );
+
+      <div className="bg-xcolor9 dark:bg-xcolor24/95 rounded-2xl p-3 sm:p-4 md:p-5 lg:p-6 border border-xcolor5 dark:border-xcolor24/30">
+        <div className="min-w-full">
+          <div className="grid grid-cols-12 bg-xcolor5/90 dark:bg-black gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 py-2.5 sm:py-3 md:py-4 lg:py-4 px-1.5 sm:px-2 md:px-3 lg:px-4 mb-2.5 sm:mb-3 md:mb-4 lg:mb-5 border-b border-xcolor5 dark:border-xcolor24/40 rounded-full">
+            <div className="col-span-3 sm:col-span-2 md:col-span-2 lg:col-span-2 h-4 bg-xcolor5/50 dark:bg-xcolor24/50 rounded animate-pulse"></div>
+            <div className="col-span-3 sm:col-span-2 md:col-span-2 lg:col-span-2 h-4 bg-xcolor5/50 dark:bg-xcolor24/50 rounded animate-pulse"></div>
+            <div className="col-span-3 sm:col-span-2 md:col-span-2 lg:col-span-2 h-4 bg-xcolor5/50 dark:bg-xcolor24/50 rounded animate-pulse"></div>
+            <div className="col-span-3 sm:col-span-2 md:col-span-2 lg:col-span-2 h-4 bg-xcolor5/50 dark:bg-xcolor24/50 rounded animate-pulse hidden lg:block"></div>
+            <div className="col-span-0 sm:col-span-2 md:col-span-3 lg:col-span-2 h-4 bg-xcolor5/50 dark:bg-xcolor24/50 rounded animate-pulse hidden sm:block"></div>
+            <div className="col-span-0 sm:col-span-2 md:col-span-3 lg:col-span-2 h-4 bg-xcolor5/50 dark:bg-xcolor24/50 rounded animate-pulse hidden sm:block"></div>
+          </div>
+
+          <div className="space-y-2 sm:space-y-2 md:space-y-3 lg:space-y-3">
+            {[...Array(8)].map((_, index) => (
+              <div
+                key={index}
+                className="grid grid-cols-12 gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 items-center py-2 sm:py-3 md:py-3 lg:py-4 px-1.5 sm:px-2"
+              >
+                <div className="col-span-3 sm:col-span-2 md:col-span-2 lg:col-span-2 flex items-center gap-2">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 lg:w-11 lg:h-11 rounded-full bg-xcolor5/50 dark:bg-xcolor24/50 animate-pulse"></div>
+                  <div className="hidden sm:block flex-1">
+                    <div className="h-4 w-20 bg-xcolor5/50 dark:bg-xcolor24/50 rounded animate-pulse mb-1"></div>
+                    <div className="h-3 w-12 bg-xcolor5/50 dark:bg-xcolor24/50 rounded animate-pulse"></div>
+                  </div>
+                </div>
+                <div className="col-span-3 sm:col-span-2 md:col-span-2 lg:col-span-2">
+                  <div className="h-4 w-16 bg-xcolor5/50 dark:bg-xcolor24/50 rounded animate-pulse mx-auto"></div>
+                </div>
+                <div className="col-span-3 sm:col-span-2 md:col-span-2 lg:col-span-2">
+                  <div className="h-4 w-12 bg-xcolor5/50 dark:bg-xcolor24/50 rounded animate-pulse mx-auto"></div>
+                </div>
+                <div className="col-span-3 sm:col-span-2 md:col-span-2 lg:col-span-2 hidden lg:block">
+                  <div className="h-4 w-14 bg-xcolor5/50 dark:bg-xcolor24/50 rounded animate-pulse mx-auto"></div>
+                </div>
+                <div className="col-span-0 sm:col-span-2 md:col-span-3 lg:col-span-2 hidden sm:flex justify-center">
+                  <div className="w-12 h-6 bg-xcolor5/50 dark:bg-xcolor24/50 rounded animate-pulse"></div>
+                </div>
+                <div className="col-span-3 sm:col-span-3 md:col-span-3 lg:col-span-2 flex justify-center">
+                  <div className="h-6 w-16 bg-xcolor5/50 dark:bg-xcolor24/50 rounded animate-pulse"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  if (loading && cryptoData.length === 0) {
+    return <PriceChartSkeleton />;
   }
 
   if (!loading && cryptoData.length === 0) {

@@ -29,16 +29,35 @@ const CryptoTicker = () => {
     return percentage >= 0 ? `+${formatted}%` : `${formatted}%`;
   };
 
+  // Skeleton loader for crypto ticker
+  const TickerSkeleton = () => (
+    <div className="fixed bottom-0 left-0 right-0 z-[100] bg-black/90 backdrop-blur-md border-t border-gray-700/50 overflow-hidden" dir="ltr">
+      <Marquee
+        gradient={false}
+        speed={TICKER_CONFIG.SCROLL_SPEED}
+        direction="left"
+        className="py-2.5"
+        pauseOnHover={true}
+        autoFill={true}
+      >
+        {[...Array(10)].map((_, index) => (
+          <div
+            key={index}
+            className="inline-flex items-center mx-6 text-xs whitespace-nowrap"
+            dir="ltr"
+          >
+            <div className="w-5 h-5 rounded-full bg-gray-600/50 mr-2 animate-pulse"></div>
+            <div className="h-4 w-12 bg-gray-600/50 rounded mr-1.5 animate-pulse"></div>
+            <div className="h-4 w-16 bg-gray-600/50 rounded mr-2.5 animate-pulse"></div>
+            <div className="h-4 w-14 bg-gray-600/50 rounded animate-pulse"></div>
+          </div>
+        ))}
+      </Marquee>
+    </div>
+  );
+
   if (loading && cryptoData.length === 0) {
-    return (
-      <div className="fixed bottom-0 left-0 right-0 z-[100] bg-black/90 backdrop-blur-md border-t border-gray-700/50 h-12 flex items-center justify-center">
-        <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-pulse"></div>
-          <div className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-pulse delay-75"></div>
-          <div className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-pulse delay-150"></div>
-        </div>
-      </div>
-    );
+    return <TickerSkeleton />;
   }
 
   if (cryptoData.length === 0) {
